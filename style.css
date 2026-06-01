@@ -41,6 +41,11 @@ body.locked {
   overflow: hidden;
 }
 
+/* Global Hidden Utility Class */
+.hidden {
+  display: none !important;
+}
+
 /* --- Paper Grain Texture (z-index infinite & pointer-disabled) --- */
 .paper-texture {
   position: fixed;
@@ -71,6 +76,7 @@ body.locked {
   flex-direction: column;
   overflow: hidden;
   z-index: 10;
+  opacity: 0; /* Initially hidden for curtain rise fade */
 }
 
 /* Subtle radial vignette overlay to add rich engraving paper depth */
@@ -113,6 +119,14 @@ body.locked {
   background-size: cover;
   background-position: center;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);
+  transition: transform 1.2s cubic-bezier(0.83, 0, 0.17, 1),
+              opacity 0.6s ease;
+  will-change: transform;
+}
+
+.gate.gate--opening {
+  transform: translateX(-50%) translateY(-100%);
+  opacity: 0;
 }
 
 .gate-overlay {
@@ -138,6 +152,13 @@ body.locked {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease;
+  will-change: transform, opacity;
+}
+
+.gate.gate--opening .gate-content {
+  transform: translateY(-30px);
+  opacity: 0;
 }
 
 /* --- Engraved Frame (Double Line) --- */
@@ -343,8 +364,15 @@ body.locked {
   cursor: pointer;
   z-index: 999;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.18);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   outline: none;
+  opacity: 0; /* Fade-in post-gate */
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.audio-control.revealed {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .audio-control:hover {
@@ -468,9 +496,12 @@ body.locked {
   opacity: 0.65;
 }
 
-/* --- SECTION 2: PEMBUKA & AYAT (Breathing Room / Khidmat) --- */
+/* --- SECTION 2: PEMBUKA & AYAT (Solemn Dark Contrast Section) --- */
 .sec-opening {
   padding: 110px 24px 90px 24px; /* Extra spacious margins */
+  background-color: var(--color-ink) !important;
+  color: var(--color-cream) !important;
+  position: relative;
 }
 
 .sec-opening .opening-intro {
@@ -479,14 +510,14 @@ body.locked {
   font-weight: 600;
   letter-spacing: 2px;
   margin-bottom: 12px;
-  color: var(--color-ink);
+  color: var(--color-bronze) !important;
 }
 
 .sec-opening .opening-text {
   font-family: var(--font-body);
   font-size: 1.02rem;
   line-height: 1.65;
-  color: rgba(26, 26, 26, 0.8);
+  color: rgba(243, 236, 224, 0.82) !important; /* Cream text with high readability */
   margin-bottom: 25px;
 }
 
@@ -500,13 +531,13 @@ body.locked {
   height: 20px;
   color: var(--color-bronze);
   margin-bottom: 12px;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .ayat-arabic {
-  font-size: 1.7rem;
-  line-height: 2.1;
-  color: var(--color-ink);
+  font-size: 1.75rem;
+  line-height: 2.15;
+  color: var(--color-cream) !important;
   text-align: center;
   margin-bottom: 22px;
   padding: 0 10px;
@@ -519,9 +550,8 @@ body.locked {
   font-family: var(--font-body);
   font-size: 1.1rem;
   font-style: italic;
-  line-height: 1.9; /* Breathable spacing */
-  color: var(--color-ink);
-  opacity: 0.9;
+  line-height: 1.9;
+  color: rgba(243, 236, 224, 0.9) !important;
   margin-bottom: 12px;
   letter-spacing: 0.3px;
 }
@@ -532,23 +562,7 @@ body.locked {
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 1px;
-  color: var(--color-bronze);
-}
-
-/* --- SECTION 3: MEMPELAI (Arched Photo & Rose Accent) --- */
-.couple-grid {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-}
-
-.mempelai-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  color: var(--color-rose) !important; /* Soft playful rose accent to contrast dark arang */
 }
 
 .mempelai-photo-wrapper {
@@ -560,7 +574,7 @@ body.locked {
   border-radius: 75px 75px 4px 4px; /* Arched outer frame */
   padding: 7px;
   background-color: var(--color-cream);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02); /* Extremely softened minimal shadow */
 }
 
 .mempelai-photo-wrapper::before {
@@ -600,9 +614,16 @@ body.locked {
   width: calc(100% - 18px);
   height: calc(100% - 18px);
   overflow: hidden;
-  background-color: var(--color-cream); /* cream background for initials fallback */
   z-index: 2;
   border-radius: 66px 66px 2px 2px; /* Arched inner container */
+}
+
+#groom-card .photo-container {
+  background: radial-gradient(circle at center, #FAF6F0 0%, #F3ECE0 70%, #EAE2D4 100%);
+}
+
+#bride-card .photo-container {
+  background: radial-gradient(circle at center, #FAF4F2 0%, #F4EAE6 70%, #EAE2D4 100%); /* soft rose-cream */
 }
 
 .mempelai-photo {
@@ -614,8 +635,9 @@ body.locked {
   object-fit: cover;
   display: block;
   z-index: 4; /* Shows above initials fallback */
-  filter: sepia(0.22) contrast(1.04) brightness(0.96) grayscale(0.12);
-  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  mix-blend-mode: multiply;
+  filter: sepia(0.08) contrast(1.02) brightness(0.98); /* extremely soft warm filter */
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .mempelai-photo-wrapper:hover .mempelai-photo {
@@ -1392,8 +1414,8 @@ body.locked {
 /* --- Scroll Reveal Animations --- */
 .reveal-item {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.85s cubic-bezier(0.25, 1, 0.5, 1), transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translateY(14px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
 
@@ -1404,6 +1426,23 @@ body.locked {
 
 /* Respect user preferences regarding motion */
 @media (prefers-reduced-motion: reduce) {
+  .gate {
+    transition: opacity 0.3s ease !important;
+    transform: translateX(-50%) !important;
+  }
+  .gate.gate--opening {
+    opacity: 0 !important;
+    transform: translateX(-50%) !important;
+  }
+  .gate.gate--opening .gate-content {
+    transform: none !important;
+    opacity: 0 !important;
+    transition: none !important;
+  }
+  .main-content.revealed {
+    animation: none !important;
+    opacity: 1 !important;
+  }
   .reveal-item {
     opacity: 1 !important;
     transform: none !important;
@@ -1443,9 +1482,51 @@ body.locked {
 }
 
 /* --- Tap Target Size Expansions (A11y >= 44px) --- */
+/* --- Instagram Link Elegant Revisions --- */
 .instagram-link {
-  padding: 10px 20px !important; /* Expansion for easy thumb tap */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none !important;
+  color: var(--color-ink) !important;
+  transition: color 0.3s ease;
+  padding: 10px 20px !important;
   min-height: 44px;
+  cursor: pointer;
+}
+
+.instagram-link:hover {
+  color: var(--color-bronze) !important;
+}
+
+.instagram-link span[id$="-ig-handle"] {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none !important;
+}
+
+.ig-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--color-bronze);
+  border-radius: 50%;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.instagram-link:hover .ig-icon-wrapper {
+  background-color: rgba(138, 109, 59, 0.1);
+  border-color: var(--color-bronze);
+}
+
+.ig-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--color-bronze);
+  display: block;
 }
 
 .btn-copy, .btn-copy-address {

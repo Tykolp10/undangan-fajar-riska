@@ -76,12 +76,12 @@
   <!-- MAIN SCROLLABLE CONTENT (Initially Locked until Gate opens) -->
   <main id="main-content" class="main-content hidden">
     <!-- SECTION 2: Pembuka + Ayat -->
-    <section id="sec-opening" class="section sec-opening reveal-item">
+    <section id="sec-opening" class="section sec-opening">
       <div class="sec-container">
-        <p class="opening-intro">Assalamu'alaikum Wr. Wb.</p>
-        <p class="opening-text">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami:</p>
+        <p class="opening-intro reveal-item">Assalamu'alaikum Wr. Wb.</p>
+        <p class="opening-text reveal-item">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami:</p>
         
-        <div class="ayat-box">
+        <div class="ayat-box reveal-item">
           <!-- Small floral ornament above the quote in whimsical brush style -->
           <svg class="ayat-icon" viewBox="0 0 100 30" fill="none" stroke="currentColor">
             <path d="M10 20 C30 20, 45 10, 50 15 C55 20, 70 10, 90 10" stroke-width="1.8" stroke-linecap="round"></path>
@@ -101,14 +101,14 @@
     <div class="section-divider reveal-item" id="div-opening-couple"></div>
 
     <!-- SECTION 3: Mempelai -->
-    <section id="sec-couple" class="section sec-couple reveal-item">
+    <section id="sec-couple" class="section sec-couple">
       <div class="sec-container">
-        <h2 class="section-title">Mempelai</h2>
-        <p class="section-subtitle">Kami yang berbahagia</p>
+        <h2 class="section-title reveal-item">Mempelai</h2>
+        <p class="section-subtitle reveal-item">Kami yang berbahagia</p>
         
         <div class="couple-grid">
           <!-- GROOM CARD -->
-          <div class="mempelai-card" id="groom-card">
+          <div class="mempelai-card reveal-item" id="groom-card">
             <div class="mempelai-photo-wrapper">
               <div class="botanical-frame-svg">
                 <svg viewBox="0 0 100 120" fill="none" stroke="currentColor" class="frame-svg">
@@ -126,17 +126,19 @@
             <h3 class="mempelai-fullname" id="groom-fullname"></h3>
             <p class="mempelai-parents" id="groom-parents"></p>
             <a id="groom-instagram" class="instagram-link hidden" target="_blank" rel="noopener">
-              <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
+              <span class="ig-icon-wrapper">
+                <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </span>
               <span id="groom-ig-handle"></span>
             </a>
           </div>
           
           <!-- Decorative Ampersand with hand-drawn brush leaf sprig -->
-          <div class="ampersand-doodle-box">
+          <div class="ampersand-doodle-box reveal-item">
             <svg class="vintage-doodle" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width: 80px; height: 48px; margin-bottom: -10px; margin-top: -10px;">
               <path d="M50 45 C42 40, 25 32, 12 36 C22 32, 34 35, 45 42"></path>
               <path d="M50 45 C58 40, 75 32, 88 36 C78 32, 66 35, 55 42"></path>
@@ -148,7 +150,7 @@
           </div>
           
           <!-- BRIDE CARD -->
-          <div class="mempelai-card" id="bride-card">
+          <div class="mempelai-card reveal-item" id="bride-card">
             <div class="mempelai-photo-wrapper">
               <div class="botanical-frame-svg">
                 <svg viewBox="0 0 100 120" fill="none" stroke="currentColor" class="frame-svg">
@@ -172,11 +174,13 @@
             </svg>
             <p class="mempelai-parents" id="bride-parents"></p>
             <a id="bride-instagram" class="instagram-link hidden" target="_blank" rel="noopener">
-              <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
+              <span class="ig-icon-wrapper">
+                <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </span>
               <span id="bride-ig-handle"></span>
             </a>
           </div>
@@ -188,12 +192,12 @@
     <div class="section-divider reveal-item" id="div-couple-events"></div>
 
     <!-- SECTION 4: Acara + Countdown -->
-    <section id="sec-events" class="section sec-events reveal-item">
+    <section id="sec-events" class="section sec-events">
       <div class="sec-container">
-        <h2 class="section-title">Hari Bahagia</h2>
+        <h2 class="section-title reveal-item">Hari Bahagia</h2>
         
         <!-- Countdown Widget -->
-        <div class="countdown-container">
+        <div class="countdown-container reveal-item">
           <div id="countdown-timer" class="countdown-timer">
             <div class="countdown-box">
               <span class="countdown-val" id="cd-days">00</span>
@@ -218,7 +222,7 @@
         </div>
         
         <!-- Add to Calendar Button -->
-        <div class="calendar-btn-wrapper">
+        <div class="calendar-btn-wrapper reveal-item">
           <a id="btn-calendar" class="btn btn-secondary calendar-btn" target="_blank" rel="noopener">
             <svg class="calendar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -231,7 +235,7 @@
         </div>
         
         <!-- Events Schedule Cards Container -->
-        <div class="events-list" id="events-list">
+        <div class="events-list reveal-item" id="events-list">
           <!-- Injected via script.js -->
         </div>
       </div>
@@ -241,12 +245,12 @@
     <div class="section-divider reveal-item" id="div-events-gifts"></div>
 
     <!-- SECTION 5: Hadiah -->
-    <section id="sec-gifts" class="section sec-gifts reveal-item">
+    <section id="sec-gifts" class="section sec-gifts">
       <div class="sec-container">
-        <h2 class="section-title">Kado Digital</h2>
-        <p class="section-subtitle" id="gifts-note"></p>
+        <h2 class="section-title reveal-item">Kado Digital</h2>
+        <p class="section-subtitle reveal-item" id="gifts-note"></p>
         
-        <button id="btn-show-gifts" class="btn btn-primary">Kirim Hadiah</button>
+        <button id="btn-show-gifts" class="btn btn-primary reveal-item">Kirim Hadiah</button>
         
         <!-- Modal Popup Overlay -->
         <div id="gift-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -282,12 +286,12 @@
     <div class="section-divider reveal-item" id="div-gifts-rsvp"></div>
 
     <!-- SECTION 6: RSVP (Form) -->
-    <section id="sec-rsvp" class="section sec-rsvp reveal-item">
+    <section id="sec-rsvp" class="section sec-rsvp">
       <div class="sec-container">
-        <h2 class="section-title">Konfirmasi Kehadiran</h2>
-        <p class="section-subtitle">Mohon konfirmasikan kehadiran Anda</p>
+        <h2 class="section-title reveal-item">Konfirmasi Kehadiran</h2>
+        <p class="section-subtitle reveal-item">Mohon konfirmasikan kehadiran Anda</p>
         
-        <div class="rsvp-form-container">
+        <div class="rsvp-form-container reveal-item">
           <!-- Nama Input -->
           <div class="form-group">
             <label for="rsvp-nama" class="form-label">Nama Tamu</label>
@@ -347,7 +351,7 @@
         </div>
         
         <!-- RSVP Counters Stats Badge -->
-        <div class="counter-section">
+        <div class="counter-section reveal-item">
           <h3 class="counter-title">Konfirmasi Terkumpul</h3>
           <div class="counter-grid">
             <div class="counter-badge hadir">
@@ -371,10 +375,10 @@
     <div class="section-divider reveal-item" id="div-rsvp-closing"></div>
 
     <!-- SECTION 7: Penutup -->
-    <section id="sec-closing" class="section sec-closing reveal-item">
+    <section id="sec-closing" class="section sec-closing">
       <div class="sec-container">
         <!-- Whimsical hand-drawn brush closing heart motif -->
-        <svg class="vintage-doodle" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width: 100px; height: 50px; margin-bottom: 25px;">
+        <svg class="vintage-doodle reveal-item" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width: 100px; height: 50px; margin-bottom: 25px;">
           <path d="M50 42 C30 26, 12 12, 50 4 C88 12, 70 26, 50 42 Z" stroke-width="1.8"></path>
           <path d="M22 15 C12 25, 5 30, 20 38 C28 34, 28 24, 22 15 Z" stroke-width="1"></path>
           <path d="M78 15 C88 25, 95 30, 80 38 C72 34, 72 24, 78 15 Z" stroke-width="1"></path>
@@ -382,18 +386,18 @@
         </svg>
 
         <!-- Optional Hand-Drawn Brush PNG Illustration Slot -->
-        <div class="brush-illust-slot">
+        <div class="brush-illust-slot reveal-item">
           <img src="assets/img/illust/closing-ornament.png" class="brush-illust hidden" alt="Decorative Brush Ornament" onerror="this.style.display='none'">
         </div>
 
-        <p class="closing-note" id="closing-note"></p>
+        <p class="closing-note reveal-item" id="closing-note"></p>
         
-        <div class="closing-signature">
+        <div class="closing-signature reveal-item">
           <span class="sig-title">Kami yang berbahagia</span>
           <h2 class="sig-couple-name" id="closing-couple-name">Fajar & Riska</h2>
         </div>
         
-        <div class="made-by" id="made-by">Made with ♡</div>
+        <div class="made-by reveal-item" id="made-by">Made with ♡</div>
       </div>
     </section>
   </main>

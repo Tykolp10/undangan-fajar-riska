@@ -139,11 +139,44 @@ function initCouple() {
 /**
  * Inisialisasi Section 4 (Countdown, Pembuatan Link Google Calendar, dan List Acara)
  */
+/**
+ * Failsafe regex-based ISO Date parser that works across all mobile browsers and WebViews.
+ */
+function parseISODate(dateStr) {
+  if (!dateStr) return new Date();
+  
+  // Format: YYYY-MM-DDTHH:mm:ss[+HH:MM]
+  const regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:[.,]\d+)?(?:Z|([+-])(\d{2}):(\d{2}))?$/;
+  const match = dateStr.match(regex);
+  if (!match) {
+    return new Date(dateStr); // Fallback to native parser
+  }
+  
+  const year = parseInt(match[1], 10);
+  const month = parseInt(match[2], 10) - 1; // 0-indexed month
+  const day = parseInt(match[3], 10);
+  const hour = parseInt(match[4], 10);
+  const minute = parseInt(match[5], 10);
+  const second = parseInt(match[6], 10);
+  
+  let utcTime = Date.UTC(year, month, day, hour, minute, second);
+  
+  if (match[7]) { // Timezone offset present, convert to UTC
+    const sign = match[7] === '+' ? -1 : 1;
+    const offsetHours = parseInt(match[8], 10);
+    const offsetMins = parseInt(match[9], 10);
+    const offsetMillis = (offsetHours * 60 + offsetMins) * 60 * 1000;
+    utcTime += sign * offsetMillis;
+  }
+  
+  return new Date(utcTime);
+}
+
 function initEventsAndCountdown() {
   // --- 1. Realtime Countdown ---
   const dateISO = CONFIG.couple.dateISO;
   if (dateISO) {
-    const targetTime = new Date(dateISO).getTime();
+    const targetTime = parseISODate(dateISO).getTime();
     const cdTimer = document.getElementById('countdown-timer');
     const cdElapsed = document.getElementById('countdown-elapsed');
     
@@ -184,7 +217,7 @@ function initEventsAndCountdown() {
   const btnCalendar = document.getElementById('btn-calendar');
   if (btnCalendar && dateISO) {
     try {
-      const startDate = new Date(dateISO);
+      const startDate = parseISODate(dateISO);
       if (!isNaN(startDate.getTime())) {
         const endDate = new Date(startDate.getTime() + (2 * 60 * 60 * 1000));
 
@@ -541,26 +574,36 @@ function initClosing() {
  * Setup IntersectionObserver untuk memberikan efek Scroll Reveal tenang & khidmat.
  */
 function setupScrollReveal() {
-  const revealItems = document.querySelectorAll('.reveal-item');
-  if (revealItems.length === 0) return;
+  const sections = document.querySelectorAll('section, .section-divider');
+  if (sections.length === 0) return;
 
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -50px 0px',
-    threshold: 0.08
+    rootMargin: '0px 0px -12% 0px',
+    threshold: 0.05
   };
 
-  const observer = new IntersectionObserver((entries, obs) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('reveal-active');
-        obs.unobserve(entry.target); // Cukup satu kali reveal demi performa & konsistensi
+        if (entry.target.classList.contains('section-divider')) {
+          entry.target.classList.add('reveal-active');
+        } else {
+          // Stagger reveal of section's children
+          const items = entry.target.querySelectorAll('.reveal-item');
+          items.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.add('reveal-active');
+            }, index * 80);
+          });
+        }
+        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
-  revealItems.forEach(item => {
-    observer.observe(item);
+  sections.forEach(sec => {
+    observer.observe(sec);
   });
 }
 
@@ -590,47 +633,77 @@ function setupGateOpening() {
 
   if (!btnOpen) return;
 
-  btnOpen.addEventListener('click', () => {
+  btnOpen.addEventListener('click', function() {
+    // 1. Guard against double triggers
+    this.disabled = true;
+
+    // 2. Play background music (safely within user gesture context)
     if (CONFIG.music && CONFIG.music.enabled && CONFIG.music.src) {
       bgMusic.src = CONFIG.music.src;
-      
       bgMusic.play()
         .then(() => {
           audioControl.classList.remove('hidden');
         })
         .catch((error) => {
-          console.warn('Pemutaran musik otomatis diblokir browser. Menunggu interaksi.', error);
+          console.warn('Pemutaran musik otomatis diblokir browser:', error);
           audioControl.classList.remove('hidden');
           audioControl.classList.add('paused');
-          muteSlash.classList.remove('hidden');
+          if (muteSlash) muteSlash.classList.remove('hidden');
         });
     }
 
+    // 3. Scroll to top instantly and unlock body
+    window.scrollTo(0, 0);
+    document.body.classList.remove('locked');
+
+    // 4. Trigger curtain rise transition
     if (mainContent) {
       mainContent.classList.remove('hidden');
-      // Robust scroll-reveal trigger fallback: ensures top sections are visible immediately
-      setTimeout(() => {
-        const openingSec = document.getElementById('sec-opening');
-        if (openingSec) openingSec.classList.add('reveal-active');
-        window.dispatchEvent(new Event('scroll'));
-      }, 100);
+      void mainContent.offsetWidth; // Force layout calculation to ensure zero-state registers
+      mainContent.classList.add('revealed');
     }
 
-    if (gate && typeof anime !== 'undefined') {
-      anime({
-        targets: '#gate',
-        translateY: '-100%',
-        opacity: [1, 0.4],
-        easing: 'easeInOutQuint',
-        duration: 1300,
-        complete: () => {
-          gate.style.display = 'none';
-          document.body.classList.remove('locked');
+    if (gate) {
+      gate.classList.add('gate--opening');
+
+      const animationDuration = 1200; // Match 1.2s cubic-bezier in CSS
+
+      const cleanupGate = () => {
+        gate.style.display = 'none';
+        
+        // Fade in floating audio control after gate is fully open
+        if (audioControl && !audioControl.classList.contains('hidden')) {
+          audioControl.classList.add('revealed');
         }
-      });
+
+        // Trigger immediate scroll-reveal of first section's items
+        const firstSectionItems = document.querySelectorAll('#sec-opening .reveal-item');
+        firstSectionItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('reveal-active');
+          }, index * 80);
+        });
+      };
+
+      let gateCleaned = false;
+      const handleTransitionEnd = (e) => {
+        if (e.target === gate && !gateCleaned) {
+          gateCleaned = true;
+          cleanupGate();
+          gate.removeEventListener('transitionend', handleTransitionEnd);
+        }
+      };
+
+      gate.addEventListener('transitionend', handleTransitionEnd);
+      // Timeout fallback if transitionend doesn't fire
+      setTimeout(() => {
+        if (!gateCleaned) {
+          gateCleaned = true;
+          cleanupGate();
+        }
+      }, animationDuration + 50);
     } else {
-      if (gate) gate.style.display = 'none';
-      document.body.classList.remove('locked');
+      if (audioControl) audioControl.classList.add('revealed');
     }
   });
 
