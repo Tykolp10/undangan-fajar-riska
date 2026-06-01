@@ -209,11 +209,23 @@ function initEventsAndCountdown() {
   if (eventsList && CONFIG.events) {
     eventsList.innerHTML = '';
 
-    CONFIG.events.forEach(evt => {
+    CONFIG.events.forEach((evt, index) => {
       const card = document.createElement('div');
       card.className = 'event-card';
 
+      // Small elegant line-art icon (Akad has a floral wreath leaf, Resepsi has a vintage crown scroll)
+      const iconSvg = index === 0 
+        ? `<svg class="event-icon-doodle" viewBox="0 0 100 30" fill="none" stroke="currentColor">
+            <path d="M50 5 Q40 25, 30 15 T10 15 M50 5 Q60 25, 70 15 T90 15" stroke-width="0.8" stroke-dasharray="1.5 1"></path>
+            <circle cx="50" cy="15" r="2.5" fill="currentColor"></circle>
+           </svg>`
+        : `<svg class="event-icon-doodle" viewBox="0 0 100 30" fill="none" stroke="currentColor">
+            <path d="M50 25 C35 15, 25 10, 50 2 C75 10, 65 15, 50 25 Z" stroke-width="0.8"></path>
+            <circle cx="50" cy="12" r="2" fill="currentColor"></circle>
+           </svg>`;
+
       card.innerHTML = `
+        ${iconSvg}
         <h3 class="event-card-header">${evt.name}</h3>
         <div class="event-details">
           <div class="event-detail-item date">${evt.dateDisplay}</div>
@@ -590,6 +602,12 @@ function setupGateOpening() {
 
     if (mainContent) {
       mainContent.classList.remove('hidden');
+      // Robust scroll-reveal trigger fallback: ensures top sections are visible immediately
+      setTimeout(() => {
+        const openingSec = document.getElementById('sec-opening');
+        if (openingSec) openingSec.classList.add('reveal-active');
+        window.dispatchEvent(new Event('scroll'));
+      }, 100);
     }
 
     if (gate && typeof anime !== 'undefined') {

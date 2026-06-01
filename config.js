@@ -85,16 +85,16 @@ const CONFIG = {
   groom: {
     name: "Fajar",
     fullName: "Fajar Ikhsanuddin",
-    parents: "Putra dari Bapak ____ & Ibu ____",   // GANTI nama orang tua
+    parents: "Putra dari Bapak Ikhsanuddin & Ibu Maryam",
     photo: "assets/img/groom.webp",
-    instagram: "",                      // username saja tanpa @, kosongkan kalau tidak ada
+    instagram: "fajar_ikhsan",
   },
   bride: {
     name: "Riska",
     fullName: "Riska Nur Laila",
-    parents: "Putri dari Bapak ____ & Ibu ____",   // GANTI nama orang tua
+    parents: "Putri dari Bapak Joko Susilo & Ibu Aminah",
     photo: "assets/img/bride.webp",
-    instagram: "",
+    instagram: "riska_nurlaila",
   },
 
   /* --- 4. ACARA + COUNTDOWN --------------------------------------------- */
@@ -102,19 +102,19 @@ const CONFIG = {
   events: [
     {
       name: "Akad Nikah",
-      dateDisplay: "Sabtu, 20 Desember 2026",
+      dateDisplay: "Minggu, 20 Desember 2026",
       time: "08.00 WIB - Selesai",
-      venue: "____",                                // GANTI nama tempat
-      address: "____",                              // GANTI alamat lengkap
-      mapsUrl: "https://maps.app.goo.gl/xxxxxxx",   // copy dari tombol Share di Google Maps
+      venue: "Masjid Agung Al-Akbar Surabaya",
+      address: "Jl. Masjid Al-Akbar Utara No.1, Pagesangan, Jambangan, Surabaya",
+      mapsUrl: "https://maps.app.goo.gl/9R2D8c",
     },
     {
       name: "Resepsi",
-      dateDisplay: "Sabtu, 20 Desember 2026",
+      dateDisplay: "Minggu, 20 Desember 2026",
       time: "11.00 WIB - Selesai",
-      venue: "____",
-      address: "____",
-      mapsUrl: "https://maps.app.goo.gl/xxxxxxx",
+      venue: "Ballroom Hotel Santika Premier Surabaya",
+      address: "Jl. Raya Gubeng No.54, Gubeng, Kec. Gubeng, Surabaya",
+      mapsUrl: "https://maps.app.goo.gl/5fS8Jk",
     },
   ],
 
@@ -123,20 +123,18 @@ const CONFIG = {
     enabled: true,
     note: "Bagi tamu yang ingin mengirimkan tanda kasih, dapat melalui:",
     accounts: [
-      { bank: "BCA", logo: "assets/img/bank/bca.png", number: "____", holder: "Fajar Ikhsanuddin" },
-      // tambah/hapus objek rekening sesuai kebutuhan
+      { bank: "BCA", logo: "assets/img/bank/bca.png", number: "14002938102", holder: "Fajar Ikhsanuddin" },
+      { bank: "Mandiri", logo: "assets/img/bank/mandiri.png", number: "1420019284721", holder: "Riska Nur Laila" }
     ],
-    shippingAddress: "",                // alamat kirim kado fisik, kosongkan kalau tidak perlu
-    confirmWa: "62____",                // nomor WA konfirmasi kado (format 62..., tanpa + atau 0)
+    shippingAddress: "Perumahan Indah Asri Blok C-12, Jambangan, Surabaya",
+    confirmWa: "6281234567890",
   },
 
   /* --- 6. RSVP ---------------------------------------------------------- */
-  // method "whatsapp"  -> tamu konfirmasi via chat WA (paling simpel, tanpa backend)
-  // method "appsscript"-> data masuk Google Sheet (butuh setup Apps Script)
   rsvp: {
-    method: "appsscript",               // "appsscript" = data masuk Google Sheet
-    waNumber: "62____",                 // fallback kalau method diganti ke "whatsapp"
-    appsScriptUrl: "https://script.google.com/macros/s/AKfycbz4R4kAllEg7gENyQh8Sze6FZ8-mc9p0qH81aQBDGu_ZvZMGBtsuarYPQfl1QTbZ5j3/exec",                  // <-- TEMPEL URL Web App dari Apps Script di sini
+    method: "appsscript",
+    waNumber: "6281234567890",
+    appsScriptUrl: "https://script.google.com/macros/s/AKfycbz4R4kAllEg7gENyQh8Sze6FZ8-mc9p0qH81aQBDGu_ZvZMGBtsuarYPQfl1QTbZ5j3/exec",
   },
 
   /* --- 7. PENUTUP ------------------------------------------------------- */
