@@ -15,10 +15,10 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
 
-  <!-- Google Fonts: Cormorant Garamond for elegant serif displays, EB Garamond for body serif -->
+  <!-- Google Fonts: Amiri for Arabic script, Cormorant Garamond for elegant serif displays, EB Garamond for body serif -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
@@ -36,6 +36,12 @@
     <div class="gate-overlay"></div>
     <div class="gate-content">
       <div class="engraved-frame">
+        <!-- New top opening text in Gate -->
+        <div class="gate-header">
+          <div class="gate-basmallah arabic" id="gate-basmallah" dir="rtl" lang="ar"></div>
+          <div class="gate-opening-line" id="gate-opening-line"></div>
+        </div>
+        
         <span class="greeting" id="gate-greeting">The Wedding of</span>
         <h1 class="couple-name" id="gate-title">Fajar & Riska</h1>
         <span class="date-display" id="gate-date">20 Desember 2026</span>
@@ -76,11 +82,15 @@
         <p class="opening-text">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami:</p>
         
         <div class="ayat-box">
-          <!-- Small floral ornament above the quote -->
+          <!-- Small floral ornament above the quote in whimsical brush style -->
           <svg class="ayat-icon" viewBox="0 0 100 30" fill="none" stroke="currentColor">
-            <path d="M50 5 Q40 25, 30 15 T10 15 M50 5 Q60 25, 70 15 T90 15" stroke-dasharray="1 1"></path>
+            <path d="M10 20 C30 20, 45 10, 50 15 C55 20, 70 10, 90 10" stroke-width="1.8" stroke-linecap="round"></path>
+            <path d="M30 18 C32 12, 38 12, 40 16" stroke-width="1" stroke-linecap="round"></path>
+            <path d="M60 16 C62 22, 68 22, 70 18" stroke-width="1" stroke-linecap="round"></path>
             <circle cx="50" cy="15" r="3" fill="currentColor"></circle>
           </svg>
+          <!-- Quranic Arabic Ayat -->
+          <p class="ayat-arabic arabic" id="quote-arabic" dir="rtl" lang="ar"></p>
           <blockquote class="ayat-text" id="quote-text"></blockquote>
           <cite class="ayat-source" id="quote-source"></cite>
         </div>
@@ -125,15 +135,14 @@
             </a>
           </div>
           
-          <!-- Decorative Ampersand with leaf scroll etching doodle -->
+          <!-- Decorative Ampersand with hand-drawn brush leaf sprig -->
           <div class="ampersand-doodle-box">
-            <svg class="vintage-doodle" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="0.8" style="width: 80px; height: 48px; margin-bottom: -15px; margin-top: -10px;">
-              <!-- Intricate vintage hand-drawn botanical laurel branch framing ampersand -->
-              <path d="M50 45 C45 40, 30 35, 15 40 C25 35, 35 38, 45 42 Z"></path>
-              <path d="M50 45 C55 40, 70 35, 85 40 C75 35, 65 38, 55 42 Z"></path>
-              <path d="M30 38 Q25 25, 18 20 C22 25, 28 28, 30 34"></path>
-              <path d="M70 38 Q75 25, 82 20 C78 25, 72 28, 70 34"></path>
-              <circle cx="50" cy="45" r="2.5" fill="currentColor"></circle>
+            <svg class="vintage-doodle" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width: 80px; height: 48px; margin-bottom: -10px; margin-top: -10px;">
+              <path d="M50 45 C42 40, 25 32, 12 36 C22 32, 34 35, 45 42"></path>
+              <path d="M50 45 C58 40, 75 32, 88 36 C78 32, 66 35, 55 42"></path>
+              <path d="M35 34 C30 24, 20 18, 15 22 C18 24, 28 26, 32 31"></path>
+              <path d="M65 34 C70 24, 80 18, 85 22 C82 24, 72 26, 68 31"></path>
+              <circle cx="50" cy="45" r="3.5" fill="currentColor"></circle>
             </svg>
             <div class="mempelai-ampersand">&</div>
           </div>
@@ -154,12 +163,12 @@
               </div>
             </div>
             <h3 class="mempelai-fullname" id="bride-fullname"></h3>
-            <!-- Tiny cute rose-tinted botanical leaf doodle -->
+            <!-- Tiny cute rose-tinted whimsical brush botanical doodle -->
             <svg class="bride-flower-doodle" viewBox="0 0 100 20" fill="none" stroke="currentColor">
-              <path d="M30 10 C35 7, 45 7, 50 10 C45 13, 35 13, 30 10 Z" stroke-width="0.8"></path>
-              <path d="M50 10 C55 7, 65 7, 70 10 C65 13, 55 13, 50 10 Z" stroke-width="0.8"></path>
-              <path d="M38 10 Q50 3, 62 10 Q50 17, 38 10" stroke-width="0.5" stroke-dasharray="1.5 1"></path>
-              <circle cx="50" cy="10" r="2.2" fill="currentColor"></circle>
+              <path d="M20 10 C35 6, 42 6, 50 10 C58 6, 65 6, 80 10" stroke-width="1.5" stroke-linecap="round"></path>
+              <path d="M32 9 C35 4, 38 7, 40 10" stroke-width="0.8"></path>
+              <path d="M68 9 C65 4, 62 7, 60 10" stroke-width="0.8"></path>
+              <circle cx="50" cy="10" r="3.5" fill="currentColor"></circle>
             </svg>
             <p class="mempelai-parents" id="bride-parents"></p>
             <a id="bride-instagram" class="instagram-link hidden" target="_blank" rel="noopener">
@@ -364,14 +373,18 @@
     <!-- SECTION 7: Penutup -->
     <section id="sec-closing" class="section sec-closing reveal-item">
       <div class="sec-container">
-        <!-- Vintage hand-drawn etched heart leaf motif -->
-        <svg class="vintage-doodle" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="0.8" style="width: 100px; height: 50px; margin-bottom: 25px;">
-          <path d="M50 40 C35 25, 20 15, 50 5 C80 15, 65 25, 50 40 Z" stroke-width="1.2"></path>
-          <path d="M50 35 C40 23, 28 16, 50 8 C72 16, 60 23, 50 35 Z" stroke-width="0.5" stroke-dasharray="2 1"></path>
-          <path d="M25 15 C15 25, 5 30, 20 40 C28 35, 28 25, 25 15 Z"></path>
-          <path d="M75 15 C85 25, 95 30, 80 40 C72 35, 72 25, 75 15 Z"></path>
-          <circle cx="50" cy="20" r="3" fill="currentColor"></circle>
+        <!-- Whimsical hand-drawn brush closing heart motif -->
+        <svg class="vintage-doodle" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width: 100px; height: 50px; margin-bottom: 25px;">
+          <path d="M50 42 C30 26, 12 12, 50 4 C88 12, 70 26, 50 42 Z" stroke-width="1.8"></path>
+          <path d="M22 15 C12 25, 5 30, 20 38 C28 34, 28 24, 22 15 Z" stroke-width="1"></path>
+          <path d="M78 15 C88 25, 95 30, 80 38 C72 34, 72 24, 78 15 Z" stroke-width="1"></path>
+          <circle cx="50" cy="18" r="3.5" fill="currentColor"></circle>
         </svg>
+
+        <!-- Optional Hand-Drawn Brush PNG Illustration Slot -->
+        <div class="brush-illust-slot">
+          <img src="assets/img/illust/closing-ornament.png" class="brush-illust hidden" alt="Decorative Brush Ornament" onerror="this.style.display='none'">
+        </div>
 
         <p class="closing-note" id="closing-note"></p>
         

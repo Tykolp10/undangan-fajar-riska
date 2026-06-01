@@ -178,6 +178,42 @@ body.locked {
   pointer-events: none;
 }
 
+/* --- Arabic Typography System (Amiri Font) --- */
+.arabic {
+  font-family: 'Amiri', Georgia, serif;
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+.gate-header {
+  margin-top: 15px;
+  margin-bottom: -15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.gate-basmallah {
+  font-size: 1.55rem;
+  color: var(--color-bronze);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.gate-opening-line {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  opacity: 0.85;
+  line-height: 1.35;
+  max-width: 280px;
+  text-align: center;
+}
+
 /* --- Cover Content Typography --- */
 .greeting {
   font-family: var(--font-title);
@@ -465,6 +501,18 @@ body.locked {
   color: var(--color-bronze);
   margin-bottom: 12px;
   opacity: 0.8;
+}
+
+.ayat-arabic {
+  font-size: 1.7rem;
+  line-height: 2.1;
+  color: var(--color-ink);
+  text-align: center;
+  margin-bottom: 22px;
+  padding: 0 10px;
+  font-weight: 400;
+  letter-spacing: 0;
+  word-spacing: 1px;
 }
 
 .ayat-text {
@@ -1378,6 +1426,20 @@ body.locked {
   flex-direction: column;
   align-items: center;
   margin: 12px 0;
+}
+
+.brush-illust-slot {
+  margin: 15px auto;
+  max-width: 140px;
+  display: flex;
+  justify-content: center;
+}
+
+.brush-illust {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.85;
 }
 
 /* --- Tap Target Size Expansions (A11y >= 44px) --- */

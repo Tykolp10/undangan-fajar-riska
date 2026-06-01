@@ -37,12 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
  * Membaca konfigurasi dari CONFIG dan query string untuk menginisialisasi cover.
  */
 function initCover() {
+  const basmallahEl = document.getElementById('gate-basmallah');
+  const openingLineEl = document.getElementById('gate-opening-line');
   const greetingEl = document.getElementById('gate-greeting');
   const titleEl = document.getElementById('gate-title');
   const dateEl = document.getElementById('gate-date');
   const btnOpenEl = document.getElementById('btn-open');
   const gateEl = document.getElementById('gate');
 
+  if (basmallahEl) basmallahEl.textContent = CONFIG.cover.basmallah || '';
+  if (openingLineEl) openingLineEl.textContent = CONFIG.cover.openingLine || '';
   if (greetingEl) greetingEl.textContent = CONFIG.cover.greeting || 'The Wedding of';
   if (titleEl) titleEl.textContent = CONFIG.couple.shortName || 'Fajar & Riska';
   if (dateEl) dateEl.textContent = CONFIG.couple.dateDisplay || '';
@@ -71,8 +75,10 @@ function initCover() {
  */
 function initCouple() {
   // --- Section 2: Ayat ---
+  const quoteArabic = document.getElementById('quote-arabic');
   const quoteText = document.getElementById('quote-text');
   const quoteSource = document.getElementById('quote-source');
+  if (quoteArabic) quoteArabic.textContent = CONFIG.quote.arabic || '';
   if (quoteText) quoteText.textContent = CONFIG.quote.text || '';
   if (quoteSource) quoteSource.textContent = CONFIG.quote.source || '';
 
@@ -629,6 +635,13 @@ function setupGateOpening() {
   });
 
   if (audioControl && bgMusic) {
+    // Crop audio playback to exactly 30 seconds and loop seamlessly
+    bgMusic.addEventListener('timeupdate', () => {
+      if (bgMusic.currentTime >= 30) {
+        bgMusic.currentTime = 0;
+      }
+    });
+
     audioControl.addEventListener('click', () => {
       if (bgMusic.paused) {
         bgMusic.play()

@@ -69,6 +69,8 @@ const CONFIG = {
 
   /* --- 1. COVER / GATE -------------------------------------------------- */
   cover: {
+    basmallah: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+    openingLine: "ATAS BERKAT ROCHMAT ALLOH YANG MAHA KUASA",
     greeting: "The Wedding of",
     defaultGuest: "Tamu Undangan",      // dipakai kalau URL tidak ada ?to=
     bgImage: "assets/img/cover.webp",
@@ -77,6 +79,7 @@ const CONFIG = {
 
   /* --- 2. PEMBUKA + AYAT ------------------------------------------------ */
   quote: {
+    arabic: "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ",
     text: "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang.",
     source: "QS. Ar-Rum: 21",
   },
