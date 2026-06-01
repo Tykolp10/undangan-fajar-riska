@@ -100,7 +100,7 @@ function initCouple() {
 
   if (groomPhoto) {
     if (CONFIG.groom.photo) {
-      groomPhoto.src = CONFIG.groom.photo;
+      groomPhoto.src = CONFIG.groom.photo + '?v=1.0.2';
       groomPhoto.onload = () => {
         const initials = document.getElementById('groom-initials');
         if (initials) initials.style.display = 'none';
@@ -130,7 +130,7 @@ function initCouple() {
 
   if (bridePhoto) {
     if (CONFIG.bride.photo) {
-      bridePhoto.src = CONFIG.bride.photo;
+      bridePhoto.src = CONFIG.bride.photo + '?v=1.0.2';
       bridePhoto.onload = () => {
         const initials = document.getElementById('bride-initials');
         if (initials) initials.style.display = 'none';
