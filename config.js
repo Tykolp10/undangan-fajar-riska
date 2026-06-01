@@ -64,7 +64,7 @@ const CONFIG = {
   // Pilih lagu bertema khidmat/akustik agar selaras dengan mood.
   music: {
     enabled: true,
-    src: "assets/audio/song.mp3",       // taruh file lagu pilihanmu di sini
+    src: "assets/audio/song.m4a",       // taruh file lagu pilihanmu di sini
   },
 
   /* --- 1. COVER / GATE -------------------------------------------------- */
