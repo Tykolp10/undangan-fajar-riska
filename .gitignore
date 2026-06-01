@@ -1,0 +1,10 @@
+# Ignore zip files
+*.zip
+files.zip
+
+# Ignore log files
+*.log
+
+# Ignore local system/IDE directories
+.gemini/
+.git/

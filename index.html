@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO & Social Sharing Meta Tags -->
+  <title>Fajar & Riska Wedding</title>
+  <meta name="description" content="The Wedding of Fajar & Riska">
+  <meta property="og:title" content="Fajar & Riska Wedding">
+  <meta property="og:description" content="The Wedding of Fajar & Riska">
+  <meta property="og:image" content="assets/img/cover.webp">
+  <meta name="theme-color" content="#8A6D3B">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <!-- Google Fonts: Cormorant Garamond for elegant serif displays, EB Garamond for body serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Anime.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+</head>
+<body class="locked">
+
+  <!-- Background Paper Texture Layer -->
+  <div class="paper-texture"></div>
+
+  <!-- SECTION 1: COVER / GATE -->
+  <div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="gate-overlay"></div>
+    <div class="gate-content">
+      <div class="engraved-frame">
+        <span class="greeting" id="gate-greeting">The Wedding of</span>
+        <h1 class="couple-name" id="gate-title">Fajar & Riska</h1>
+        <span class="date-display" id="gate-date">20 Desember 2026</span>
+        
+        <div class="recipient-box">
+          <span class="recipient-label">Kepada Yth. Bapak/Ibu/Saudara/i:</span>
+          <div class="recipient-name" id="guest-name">Tamu Undangan</div>
+        </div>
+        
+        <button id="btn-open" class="btn btn-primary" aria-label="Buka Undangan">
+          Buka Undangan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING AUDIO CONTROL -->
+  <button id="audio-control" class="audio-control hidden" aria-label="Mute/Unmute Musik" title="Musik Latar">
+    <!-- Inline SVG for Vinyl/Disc icon -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="disc-icon">
+      <circle cx="12" cy="12" r="10"></circle>
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M12 2a10 10 0 0 1 10 10" stroke-dasharray="2 2"></path>
+    </svg>
+    <!-- Mute Line Slash -->
+    <div id="mute-slash" class="mute-slash hidden"></div>
+  </button>
+
+  <!-- BACKGROUND MUSIC ELEMENT -->
+  <audio id="bg-music" loop preload="auto"></audio>
+
+  <!-- MAIN SCROLLABLE CONTENT (Initially Locked until Gate opens) -->
+  <main id="main-content" class="main-content hidden">
+    <!-- SECTION 2: Pembuka + Ayat -->
+    <section id="sec-opening" class="section sec-opening reveal-item">
+      <div class="sec-container">
+        <p class="opening-intro">Assalamu'alaikum Wr. Wb.</p>
+        <p class="opening-text">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami:</p>
+        
+        <div class="ayat-box">
+          <!-- Small floral ornament above the quote -->
+          <svg class="ayat-icon" viewBox="0 0 100 30" fill="none" stroke="currentColor">
+            <path d="M50 5 Q40 25, 30 15 T10 15 M50 5 Q60 25, 70 15 T90 15" stroke-dasharray="1 1"></path>
+            <circle cx="50" cy="15" r="3" fill="currentColor"></circle>
+          </svg>
+          <blockquote class="ayat-text" id="quote-text"></blockquote>
+          <cite class="ayat-source" id="quote-source"></cite>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORNAMENTAL DIVIDER 1 -->
+    <div class="ornamental-divider reveal-item" id="div-opening-couple">
+      <div class="divider-line"></div>
+      <svg class="divider-ornament" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+        <path d="M50 20 L80 50 L50 80 L20 50 Z" stroke-width="1.2"></path>
+        <path d="M50 32 L68 50 L50 68 L32 50 Z" stroke-width="0.7" stroke-dasharray="2 1"></path>
+        <circle cx="50" cy="50" r="3" fill="currentColor"></circle>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- SECTION 3: Mempelai -->
+    <section id="sec-couple" class="section sec-couple reveal-item">
+      <div class="sec-container">
+        <h2 class="section-title">Mempelai</h2>
+        <p class="section-subtitle">Kami yang berbahagia</p>
+        
+        <div class="couple-grid">
+          <!-- GROOM CARD -->
+          <div class="mempelai-card" id="groom-card">
+            <div class="mempelai-photo-wrapper">
+              <div class="botanical-frame-svg">
+                <svg viewBox="0 0 100 120" fill="none" stroke="currentColor" class="frame-svg">
+                  <rect x="5" y="5" width="90" height="110" rx="3" stroke-width="1.2"></rect>
+                  <rect x="8" y="8" width="84" height="104" rx="2" stroke-width="0.5" stroke-dasharray="2 1"></rect>
+                  <!-- corner line accents -->
+                  <path d="M5 20 L20 5 M95 20 L80 5 M5 100 L20 115 M95 100 L80 115" stroke-width="0.8"></path>
+                </svg>
+              </div>
+              <div class="photo-container">
+                <img id="groom-photo" class="mempelai-photo" alt="Foto Groom" loading="lazy" width="150" height="185">
+                <div id="groom-initials" class="mempelai-initials">F</div>
+              </div>
+            </div>
+            <h3 class="mempelai-fullname" id="groom-fullname"></h3>
+            <p class="mempelai-parents" id="groom-parents"></p>
+            <a id="groom-instagram" class="instagram-link hidden" target="_blank" rel="noopener">
+              <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              <span id="groom-ig-handle"></span>
+            </a>
+          </div>
+          
+          <!-- Decorative Ampersand with leaf scroll etching doodle -->
+          <div class="ampersand-doodle-box">
+            <svg class="vintage-doodle" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="0.8" style="width: 80px; height: 48px; margin-bottom: -15px; margin-top: -10px;">
+              <!-- Intricate vintage hand-drawn botanical laurel branch framing ampersand -->
+              <path d="M50 45 C45 40, 30 35, 15 40 C25 35, 35 38, 45 42 Z"></path>
+              <path d="M50 45 C55 40, 70 35, 85 40 C75 35, 65 38, 55 42 Z"></path>
+              <path d="M30 38 Q25 25, 18 20 C22 25, 28 28, 30 34"></path>
+              <path d="M70 38 Q75 25, 82 20 C78 25, 72 28, 70 34"></path>
+              <circle cx="50" cy="45" r="2.5" fill="currentColor"></circle>
+            </svg>
+            <div class="mempelai-ampersand">&</div>
+          </div>
+          
+          <!-- BRIDE CARD -->
+          <div class="mempelai-card" id="bride-card">
+            <div class="mempelai-photo-wrapper">
+              <div class="botanical-frame-svg">
+                <svg viewBox="0 0 100 120" fill="none" stroke="currentColor" class="frame-svg">
+                  <rect x="5" y="5" width="90" height="110" rx="3" stroke-width="1.2"></rect>
+                  <rect x="8" y="8" width="84" height="104" rx="2" stroke-width="0.5" stroke-dasharray="2 1"></rect>
+                  <path d="M5 20 L20 5 M95 20 L80 5 M5 100 L20 115 M95 100 L80 115" stroke-width="0.8"></path>
+                </svg>
+              </div>
+              <div class="photo-container">
+                <img id="bride-photo" class="mempelai-photo" alt="Foto Bride" loading="lazy" width="150" height="185">
+                <div id="bride-initials" class="mempelai-initials">R</div>
+              </div>
+            </div>
+            <h3 class="mempelai-fullname" id="bride-fullname"></h3>
+            <p class="mempelai-parents" id="bride-parents"></p>
+            <a id="bride-instagram" class="instagram-link hidden" target="_blank" rel="noopener">
+              <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              <span id="bride-ig-handle"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORNAMENTAL DIVIDER 2 -->
+    <div class="ornamental-divider reveal-item" id="div-couple-events">
+      <div class="divider-line"></div>
+      <svg class="divider-ornament" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+        <path d="M50 20 L80 50 L50 80 L20 50 Z" stroke-width="1.2"></path>
+        <path d="M50 32 L68 50 L50 68 L32 50 Z" stroke-width="0.7" stroke-dasharray="2 1"></path>
+        <circle cx="50" cy="50" r="3" fill="currentColor"></circle>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- SECTION 4: Acara + Countdown -->
+    <section id="sec-events" class="section sec-events reveal-item">
+      <div class="sec-container">
+        <h2 class="section-title">Hari Bahagia</h2>
+        
+        <!-- Countdown Widget -->
+        <div class="countdown-container">
+          <div id="countdown-timer" class="countdown-timer">
+            <div class="countdown-box">
+              <span class="countdown-val" id="cd-days">00</span>
+              <span class="countdown-label">Hari</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-val" id="cd-hours">00</span>
+              <span class="countdown-label">Jam</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-val" id="cd-mins">00</span>
+              <span class="countdown-label">Menit</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-val" id="cd-secs">00</span>
+              <span class="countdown-label">Detik</span>
+            </div>
+          </div>
+          <div id="countdown-elapsed" class="countdown-elapsed hidden">
+            Acara telah berlangsung
+          </div>
+        </div>
+        
+        <!-- Add to Calendar Button -->
+        <div class="calendar-btn-wrapper">
+          <a id="btn-calendar" class="btn btn-secondary calendar-btn" target="_blank" rel="noopener">
+            <svg class="calendar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Simpan ke Kalender
+          </a>
+        </div>
+        
+        <!-- Events Schedule Cards Container -->
+        <div class="events-list" id="events-list">
+          <!-- Injected via script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ORNAMENTAL DIVIDER 3 -->
+    <div class="ornamental-divider reveal-item" id="div-events-gifts">
+      <div class="divider-line"></div>
+      <svg class="divider-ornament" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+        <path d="M50 20 L80 50 L50 80 L20 50 Z" stroke-width="1.2"></path>
+        <path d="M50 32 L68 50 L50 68 L32 50 Z" stroke-width="0.7" stroke-dasharray="2 1"></path>
+        <circle cx="50" cy="50" r="3" fill="currentColor"></circle>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- SECTION 5: Hadiah -->
+    <section id="sec-gifts" class="section sec-gifts reveal-item">
+      <div class="sec-container">
+        <h2 class="section-title">Kado Digital</h2>
+        <p class="section-subtitle" id="gifts-note"></p>
+        
+        <button id="btn-show-gifts" class="btn btn-primary">Kirim Hadiah</button>
+        
+        <!-- Modal Popup Overlay -->
+        <div id="gift-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+          <div class="modal-card">
+            <button id="btn-close-gifts" class="modal-close-btn" aria-label="Tutup Popup">×</button>
+            <h3 id="modal-title" class="modal-title">Kirim Hadiah</h3>
+            <div class="modal-divider-line"></div>
+            
+            <!-- Accounts List Container -->
+            <div id="bank-accounts-list" class="bank-accounts-list">
+              <!-- Injected via script.js -->
+            </div>
+            
+            <!-- Shipping Address Container -->
+            <div id="shipping-address-container" class="shipping-address-container hidden">
+              <h4 class="shipping-title">Kirim Kado Fisik:</h4>
+              <div id="shipping-address-box" class="shipping-address-box">
+                <span id="shipping-text"></span>
+                <button id="btn-copy-address" class="btn btn-primary btn-copy-address">Salin Alamat</button>
+              </div>
+            </div>
+            
+            <div class="modal-divider-line"></div>
+            <a id="btn-confirm-gift" class="btn btn-primary confirm-gift-btn" target="_blank" rel="noopener">
+              Konfirmasi via WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORNAMENTAL DIVIDER 4 -->
+    <div class="ornamental-divider reveal-item" id="div-gifts-rsvp">
+      <div class="divider-line"></div>
+      <svg class="divider-ornament" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+        <path d="M50 20 L80 50 L50 80 L20 50 Z" stroke-width="1.2"></path>
+        <path d="M50 32 L68 50 L50 68 L32 50 Z" stroke-width="0.7" stroke-dasharray="2 1"></path>
+        <circle cx="50" cy="50" r="3" fill="currentColor"></circle>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- SECTION 6: RSVP (Form) -->
+    <section id="sec-rsvp" class="section sec-rsvp reveal-item">
+      <div class="sec-container">
+        <h2 class="section-title">Konfirmasi Kehadiran</h2>
+        <p class="section-subtitle">Mohon konfirmasikan kehadiran Anda</p>
+        
+        <div class="rsvp-form-container">
+          <!-- Nama Input -->
+          <div class="form-group">
+            <label for="rsvp-nama" class="form-label">Nama Tamu</label>
+            <input type="text" id="rsvp-nama" class="form-control" placeholder="Masukkan Nama Anda">
+            <span id="rsvp-name-error" class="form-error hidden">Nama wajib diisi!</span>
+          </div>
+          
+          <!-- Jumlah Tamu Selection -->
+          <div class="form-group">
+            <label for="rsvp-jumlah" class="form-label">Jumlah Tamu</label>
+            <select id="rsvp-jumlah" class="form-control select-control">
+              <option value="1">1 Orang</option>
+              <option value="2">2 Orang</option>
+              <option value="3">3 Orang</option>
+              <option value="4">4 Orang</option>
+              <option value="5">5 Orang</option>
+            </select>
+          </div>
+          
+          <!-- Status Kehadiran Selector (Custom Capsules) -->
+          <div class="form-group">
+            <label class="form-label">Status Kehadiran</label>
+            <div class="status-capsules">
+              <label class="status-capsule-label">
+                <input type="radio" name="rsvp-status" value="Hadir" checked class="hidden-radio">
+                <span class="status-capsule-span">Hadir</span>
+              </label>
+              <label class="status-capsule-label">
+                <input type="radio" name="rsvp-status" value="Tidak Hadir" class="hidden-radio">
+                <span class="status-capsule-span">Absen</span>
+              </label>
+              <label class="status-capsule-label">
+                <input type="radio" name="rsvp-status" value="Ragu" class="hidden-radio">
+                <span class="status-capsule-span">Ragu</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Ucapan Text Area -->
+          <div class="form-group">
+            <label for="rsvp-ucapan" class="form-label">Ucapan & Doa Restu</label>
+            <textarea id="rsvp-ucapan" class="form-control text-control" rows="4" placeholder="Tuliskan doa restu atau ucapan hangat Anda..."></textarea>
+          </div>
+          
+          <!-- Submit Button -->
+          <button id="btn-submit-rsvp" class="btn btn-primary btn-submit-rsvp">
+            Kirim Konfirmasi
+          </button>
+          
+          <!-- Feedback Messages -->
+          <div id="rsvp-success-msg" class="rsvp-feedback-msg success hidden">
+            Terima kasih, konfirmasimu tercatat!
+          </div>
+          <div id="rsvp-fail-msg" class="rsvp-feedback-msg fail hidden">
+            Gagal mengirim, silakan coba lagi.
+          </div>
+        </div>
+        
+        <!-- RSVP Counters Stats Badge -->
+        <div class="counter-section">
+          <h3 class="counter-title">Konfirmasi Terkumpul</h3>
+          <div class="counter-grid">
+            <div class="counter-badge hadir">
+              <span class="counter-num" id="count-hadir">0</span>
+              <span class="counter-lbl">Hadir</span>
+            </div>
+            <div class="counter-badge tidak">
+              <span class="counter-num" id="count-tidak">0</span>
+              <span class="counter-lbl">Absen</span>
+            </div>
+            <div class="counter-badge ragu">
+              <span class="counter-num" id="count-ragu">0</span>
+              <span class="counter-lbl">Ragu</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORNAMENTAL DIVIDER 5 -->
+    <div class="ornamental-divider reveal-item" id="div-rsvp-closing">
+      <div class="divider-line"></div>
+      <svg class="divider-ornament" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+        <path d="M50 20 L80 50 L50 80 L20 50 Z" stroke-width="1.2"></path>
+        <path d="M50 32 L68 50 L50 68 L32 50 Z" stroke-width="0.7" stroke-dasharray="2 1"></path>
+        <circle cx="50" cy="50" r="3" fill="currentColor"></circle>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- SECTION 7: Penutup -->
+    <section id="sec-closing" class="section sec-closing reveal-item">
+      <div class="sec-container">
+        <!-- Vintage hand-drawn etched heart leaf motif -->
+        <svg class="vintage-doodle" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="0.8" style="width: 100px; height: 50px; margin-bottom: 25px;">
+          <path d="M50 40 C35 25, 20 15, 50 5 C80 15, 65 25, 50 40 Z" stroke-width="1.2"></path>
+          <path d="M50 35 C40 23, 28 16, 50 8 C72 16, 60 23, 50 35 Z" stroke-width="0.5" stroke-dasharray="2 1"></path>
+          <path d="M25 15 C15 25, 5 30, 20 40 C28 35, 28 25, 25 15 Z"></path>
+          <path d="M75 15 C85 25, 95 30, 80 40 C72 35, 72 25, 75 15 Z"></path>
+          <circle cx="50" cy="20" r="3" fill="currentColor"></circle>
+        </svg>
+
+        <p class="closing-note" id="closing-note"></p>
+        
+        <div class="closing-signature">
+          <span class="sig-title">Kami yang berbahagia</span>
+          <h2 class="sig-couple-name" id="closing-couple-name">Fajar & Riska</h2>
+        </div>
+        
+        <div class="made-by" id="made-by">Made with ♡</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CONFIGURATION -->
+  <script src="config.js"></script>
+  <!-- MAIN SCRIPT -->
+  <script src="script.js" defer></script>
+</body>
+</html>
